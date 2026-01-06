@@ -1,6 +1,5 @@
 import { expect, test, describe } from "bun:test";
-import { appInfoSchema, dynamicComposeSchema } from '@runtipi/common/schemas'
-import { fromError } from 'zod-validation-error';
+import { appInfoSchema, parseComposeJson } from '@runtipi/common/schemas'
 import fs from 'node:fs'
 import path from 'node:path'
 
@@ -46,14 +45,14 @@ describe("each app should have a valid config.json", async () => {
   for (const app of apps) {
     test(`app ${app} should have a valid config.json`, async () => {
       const fileContent = await getFile(app, 'config.json')
-      const parsed = appInfoSchema.omit({ urn: true }).safeParse(JSON.parse(fileContent || '{}'))
+      const schema = appInfoSchema.omit("urn")
+      const parsed = schema(JSON.parse(fileContent || '{}'))
 
-      if (!parsed.success) {
-        const validationError = fromError(parsed.error);
-        console.error(`Error parsing config.json for app ${app}:`, validationError.toString());
+      if (parsed instanceof Error) {
+        console.error(`Error parsing config.json for app ${app}:`, parsed.message);
       }
 
-      expect(parsed.success).toBe(true)
+      expect(parsed).not.toBeInstanceOf(Error)
     })
   }
 })
@@ -64,14 +63,23 @@ describe("each app should have a valid docker-compose.json", async () => {
   for (const app of apps) {
     test(`app ${app} should have a valid docker-compose.json`, async () => {
       const fileContent = await getFile(app, 'docker-compose.json')
-      const parsed = dynamicComposeSchema.safeParse(JSON.parse(fileContent || '{}'))
 
-      if (!parsed.success) {
-        const validationError = fromError(parsed.error);
-        console.error(`Error parsing docker-compose.json for app ${app}:`, validationError.toString());
+      try {
+        const parsed = parseComposeJson(JSON.parse(fileContent || '{}'))
+        expect(parsed).toBeDefined()
+      } catch(err) {
+        // Extract just the error message, not the whole object
+        let errMsg = 'Unknown error';
+        if (Array.isArray(err) && err.length > 0 && err[0].message) {
+          if (typeof err[0].message === 'function') {
+            errMsg = err[0].message();
+          } else {
+            errMsg = String(err[0].message);
+          }
+        }
+        console.error(`${app}: ${errMsg}`);
+        throw new Error(`Validation failed for ${app}: ${errMsg}`);
       }
-
-      expect(parsed.success).toBe(true)
     })
   }
 });
