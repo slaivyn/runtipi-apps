@@ -17,6 +17,10 @@
           "value": "${OPENPROJECT_DB_PASSWORD}"
         },
         {
+          "key": "POSTGRES_USER",
+          "value": "postgres"
+        },
+        {
           "key": "POSTGRES_DB",
           "value": "openproject"
         }
@@ -90,17 +94,7 @@
         }
       ],
       "command": "./docker/prod/web",
-      "dependsOn": {
-        "openproject-db": {
-          "condition": "service_started"
-        },
-        "openproject-cache": {
-          "condition": "service_started"
-        },
-        "openproject-seeder": {
-          "condition": "service_started"
-        }
-      },
+      "dependsOn": ["openproject-db", "openproject-cache", "openproject-seeder"],
       "healthCheck": {
         "test": "curl -f http://localhost:8080/health_checks/default",
         "interval": "10s",
@@ -157,17 +151,7 @@
         }
       ],
       "command": "./docker/prod/worker",
-      "dependsOn": {
-        "openproject-db": {
-          "condition": "service_started"
-        },
-        "openproject-cache": {
-          "condition": "service_started"
-        },
-        "openproject-seeder": {
-          "condition": "service_started"
-        }
-      }
+      "dependsOn": ["openproject-db", "openproject-cache", "openproject-seeder"]
     },
     {
       "name": "openproject-cron",
@@ -217,21 +201,12 @@
         }
       ],
       "command": "./docker/prod/cron",
-      "dependsOn": {
-        "openproject-db": {
-          "condition": "service_started"
-        },
-        "openproject-cache": {
-          "condition": "service_started"
-        },
-        "openproject-seeder": {
-          "condition": "service_started"
-        }
-      }
+      "dependsOn": ["openproject-db", "openproject-cache", "openproject-seeder"]
     },
     {
       "name": "openproject-seeder",
       "image": "openproject/openproject:16-slim",
+      "restart": "on-failure",
       "environment": [
         {
           "key": "OPENPROJECT_HTTPS",
@@ -276,15 +251,7 @@
           "containerPath": "/var/openproject/assets"
         }
       ],
-      "command": "./docker/prod/seeder",
-      "dependsOn": {
-        "openproject-db": {
-          "condition": "service_started"
-        },
-        "openproject-cache": {
-          "condition": "service_started"
-        }
-      }
+      "command": "./docker/prod/seeder"
     }
   ]
 }
