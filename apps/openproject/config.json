@@ -6,6 +6,8 @@
   "exposable": true,
   "dynamic_config": true,
   "https": true,
+  "uid": 1000,
+  "gid": 1000,
   "id": "openproject",
   "description": "Open source project management software. Powerful classic, agile or hybrid project management in a secure environment.",
   "tipi_version": 3,
