@@ -7,24 +7,38 @@
       "image": "postgres:13",
       "volumes": [
         {
-          "hostPath": "pgdata",
+          "hostPath": "${APP_DATA_DIR}/data/postgres",
           "containerPath": "/var/lib/postgresql/data"
         }
       ],
       "environment": [
         {
           "key": "POSTGRES_PASSWORD",
-          "value": "p4ssw0rd"
+          "value": "${OPENPROJECT_DB_PASSWORD}"
         },
         {
           "key": "POSTGRES_DB",
           "value": "openproject"
         }
-      ]
+      ],
+      "healthCheck": {
+        "test": "pg_isready -d openproject -U postgres",
+        "interval": "30s",
+        "timeout": "5s",
+        "retries": 5,
+        "startPeriod": "20s"
+      }
     },
     {
       "name": "openproject-cache",
-      "image": "memcached"
+      "image": "memcached",
+      "healthCheck": {
+        "test": "timeout 5 bash -c 'cat < /dev/null > /dev/tcp/127.0.0.1/11211'",
+        "interval": "30s",
+        "timeout": "5s",
+        "retries": 5,
+        "startPeriod": "20s"
+      }
     },
     {
       "name": "openproject-web",
@@ -54,7 +68,7 @@
         },
         {
           "key": "DATABASE_URL",
-          "value": "postgres://postgres:p4ssw0rd@openproject-db/openproject?pool=20&encoding=unicode&reconnect=true"
+          "value": "postgres://postgres:${OPENPROJECT_DB_PASSWORD}@openproject-db/openproject?pool=20&encoding=unicode&reconnect=true"
         },
         {
           "key": "RAILS_MIN_THREADS",
@@ -71,7 +85,7 @@
       ],
       "volumes": [
         {
-          "hostPath": "opdata",
+          "hostPath": "${APP_DATA_DIR}/data/assets",
           "containerPath": "/var/openproject/assets"
         }
       ],
@@ -121,7 +135,7 @@
         },
         {
           "key": "DATABASE_URL",
-          "value": "postgres://postgres:p4ssw0rd@openproject-db/openproject?pool=20&encoding=unicode&reconnect=true"
+          "value": "postgres://postgres:${OPENPROJECT_DB_PASSWORD}@openproject-db/openproject?pool=20&encoding=unicode&reconnect=true"
         },
         {
           "key": "RAILS_MIN_THREADS",
@@ -138,7 +152,7 @@
       ],
       "volumes": [
         {
-          "hostPath": "opdata",
+          "hostPath": "${APP_DATA_DIR}/data/assets",
           "containerPath": "/var/openproject/assets"
         }
       ],
@@ -181,7 +195,7 @@
         },
         {
           "key": "DATABASE_URL",
-          "value": "postgres://postgres:p4ssw0rd@openproject-db/openproject?pool=20&encoding=unicode&reconnect=true"
+          "value": "postgres://postgres:${OPENPROJECT_DB_PASSWORD}@openproject-db/openproject?pool=20&encoding=unicode&reconnect=true"
         },
         {
           "key": "RAILS_MIN_THREADS",
@@ -198,7 +212,7 @@
       ],
       "volumes": [
         {
-          "hostPath": "opdata",
+          "hostPath": "${APP_DATA_DIR}/data/assets",
           "containerPath": "/var/openproject/assets"
         }
       ],
@@ -241,7 +255,7 @@
         },
         {
           "key": "DATABASE_URL",
-          "value": "postgres://postgres:p4ssw0rd@openproject-db/openproject?pool=20&encoding=unicode&reconnect=true"
+          "value": "postgres://postgres:${OPENPROJECT_DB_PASSWORD}@openproject-db/openproject?pool=20&encoding=unicode&reconnect=true"
         },
         {
           "key": "RAILS_MIN_THREADS",
@@ -258,7 +272,7 @@
       ],
       "volumes": [
         {
-          "hostPath": "opdata",
+          "hostPath": "${APP_DATA_DIR}/data/assets",
           "containerPath": "/var/openproject/assets"
         }
       ],

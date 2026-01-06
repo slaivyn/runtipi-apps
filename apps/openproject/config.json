@@ -5,6 +5,7 @@
   "port": 8880,
   "exposable": true,
   "dynamic_config": true,
+  "https": true,
   "id": "openproject",
   "description": "Open source project management software. Powerful classic, agile or hybrid project management in a secure environment.",
   "tipi_version": 3,
@@ -14,7 +15,14 @@
   "author": "OpenProject Community",
   "source": "https://github.com/opf/openproject",
   "website": "https://www.openproject.org/",
-  "form_fields": [],
+  "form_fields": [
+    {
+      "type": "random",
+      "label": "Database Password",
+      "min": 32,
+      "env_variable": "OPENPROJECT_DB_PASSWORD"
+    }
+  ],
   "supported_architectures": ["arm64", "amd64"],
   "created_at": 1767732412000,
   "updated_at": 1767732412000
