@@ -1,16 +1,10 @@
 {
   "schemaVersion": 2,
   "$schema": "https://schemas.runtipi.io/v2/dynamic-compose.json",
-  "volumes": {
-    "pgdata": null,
-    "opdata": null
-  },
   "services": [
     {
       "name": "openproject-db",
       "image": "postgres:13",
-      "restart": "unless-stopped",
-      "stopGracePeriod": "3s",
       "volumes": [
         {
           "hostPath": "pgdata",
@@ -30,26 +24,50 @@
     },
     {
       "name": "openproject-cache",
-      "image": "memcached",
-      "restart": "unless-stopped"
+      "image": "memcached"
     },
     {
       "name": "openproject-web",
       "image": "openproject/openproject:16-slim",
       "isMain": true,
       "internalPort": 8080,
-      "restart": "unless-stopped",
       "environment": [
-        { "key": "OPENPROJECT_HTTPS", "value": "false" },
-        { "key": "OPENPROJECT_HOST__NAME", "value": "${APP_DOMAIN}" },
-        { "key": "OPENPROJECT_HSTS", "value": "false" },
-        { "key": "RAILS_CACHE_STORE", "value": "memcache" },
-        { "key": "OPENPROJECT_CACHE__MEMCACHE__SERVER", "value": "openproject-cache:11211" },
-        { "key": "OPENPROJECT_RAILS__RELATIVE__URL__ROOT", "value": "" },
-        { "key": "DATABASE_URL", "value": "postgres://postgres:p4ssw0rd@openproject-db/openproject?pool=20&encoding=unicode&reconnect=true" },
-        { "key": "RAILS_MIN_THREADS", "value": "4" },
-        { "key": "RAILS_MAX_THREADS", "value": "16" },
-        { "key": "IMAP_ENABLED", "value": "false" }
+        {
+          "key": "OPENPROJECT_HTTPS",
+          "value": "false"
+        },
+        {
+          "key": "OPENPROJECT_HOST__NAME",
+          "value": "${APP_DOMAIN}"
+        },
+        {
+          "key": "OPENPROJECT_HSTS",
+          "value": "false"
+        },
+        {
+          "key": "RAILS_CACHE_STORE",
+          "value": "memcache"
+        },
+        {
+          "key": "OPENPROJECT_CACHE__MEMCACHE__SERVER",
+          "value": "openproject-cache:11211"
+        },
+        {
+          "key": "DATABASE_URL",
+          "value": "postgres://postgres:p4ssw0rd@openproject-db/openproject?pool=20&encoding=unicode&reconnect=true"
+        },
+        {
+          "key": "RAILS_MIN_THREADS",
+          "value": "4"
+        },
+        {
+          "key": "RAILS_MAX_THREADS",
+          "value": "16"
+        },
+        {
+          "key": "IMAP_ENABLED",
+          "value": "false"
+        }
       ],
       "volumes": [
         {
@@ -58,18 +76,19 @@
         }
       ],
       "command": "./docker/prod/web",
-      "dependsOn": [
-        "openproject-db",
-        "openproject-cache",
-        "openproject-seeder"
-      ],
-      "healthcheck": {
-        "test": [
-          "CMD",
-          "curl",
-          "-f",
-          "http://localhost:8080/health_checks/default"
-        ],
+      "dependsOn": {
+        "openproject-db": {
+          "condition": "service_started"
+        },
+        "openproject-cache": {
+          "condition": "service_started"
+        },
+        "openproject-seeder": {
+          "condition": "service_started"
+        }
+      },
+      "healthCheck": {
+        "test": "curl -f http://localhost:8080/health_checks/default",
         "interval": "10s",
         "timeout": "3s",
         "retries": 3,
@@ -79,18 +98,43 @@
     {
       "name": "openproject-worker",
       "image": "openproject/openproject:16-slim",
-      "restart": "unless-stopped",
       "environment": [
-        { "key": "OPENPROJECT_HTTPS", "value": "false" },
-        { "key": "OPENPROJECT_HOST__NAME", "value": "${APP_DOMAIN}" },
-        { "key": "OPENPROJECT_HSTS", "value": "false" },
-        { "key": "RAILS_CACHE_STORE", "value": "memcache" },
-        { "key": "OPENPROJECT_CACHE__MEMCACHE__SERVER", "value": "openproject-cache:11211" },
-        { "key": "OPENPROJECT_RAILS__RELATIVE__URL__ROOT", "value": "" },
-        { "key": "DATABASE_URL", "value": "postgres://postgres:p4ssw0rd@openproject-db/openproject?pool=20&encoding=unicode&reconnect=true" },
-        { "key": "RAILS_MIN_THREADS", "value": "4" },
-        { "key": "RAILS_MAX_THREADS", "value": "16" },
-        { "key": "IMAP_ENABLED", "value": "false" }
+        {
+          "key": "OPENPROJECT_HTTPS",
+          "value": "false"
+        },
+        {
+          "key": "OPENPROJECT_HOST__NAME",
+          "value": "${APP_DOMAIN}"
+        },
+        {
+          "key": "OPENPROJECT_HSTS",
+          "value": "false"
+        },
+        {
+          "key": "RAILS_CACHE_STORE",
+          "value": "memcache"
+        },
+        {
+          "key": "OPENPROJECT_CACHE__MEMCACHE__SERVER",
+          "value": "openproject-cache:11211"
+        },
+        {
+          "key": "DATABASE_URL",
+          "value": "postgres://postgres:p4ssw0rd@openproject-db/openproject?pool=20&encoding=unicode&reconnect=true"
+        },
+        {
+          "key": "RAILS_MIN_THREADS",
+          "value": "4"
+        },
+        {
+          "key": "RAILS_MAX_THREADS",
+          "value": "16"
+        },
+        {
+          "key": "IMAP_ENABLED",
+          "value": "false"
+        }
       ],
       "volumes": [
         {
@@ -99,27 +143,58 @@
         }
       ],
       "command": "./docker/prod/worker",
-      "dependsOn": [
-        "openproject-db",
-        "openproject-cache",
-        "openproject-seeder"
-      ]
+      "dependsOn": {
+        "openproject-db": {
+          "condition": "service_started"
+        },
+        "openproject-cache": {
+          "condition": "service_started"
+        },
+        "openproject-seeder": {
+          "condition": "service_started"
+        }
+      }
     },
     {
       "name": "openproject-cron",
       "image": "openproject/openproject:16-slim",
-      "restart": "unless-stopped",
       "environment": [
-        { "key": "OPENPROJECT_HTTPS", "value": "false" },
-        { "key": "OPENPROJECT_HOST__NAME", "value": "${APP_DOMAIN}" },
-        { "key": "OPENPROJECT_HSTS", "value": "false" },
-        { "key": "RAILS_CACHE_STORE", "value": "memcache" },
-        { "key": "OPENPROJECT_CACHE__MEMCACHE__SERVER", "value": "openproject-cache:11211" },
-        { "key": "OPENPROJECT_RAILS__RELATIVE__URL__ROOT", "value": "" },
-        { "key": "DATABASE_URL", "value": "postgres://postgres:p4ssw0rd@openproject-db/openproject?pool=20&encoding=unicode&reconnect=true" },
-        { "key": "RAILS_MIN_THREADS", "value": "4" },
-        { "key": "RAILS_MAX_THREADS", "value": "16" },
-        { "key": "IMAP_ENABLED", "value": "false" }
+        {
+          "key": "OPENPROJECT_HTTPS",
+          "value": "false"
+        },
+        {
+          "key": "OPENPROJECT_HOST__NAME",
+          "value": "${APP_DOMAIN}"
+        },
+        {
+          "key": "OPENPROJECT_HSTS",
+          "value": "false"
+        },
+        {
+          "key": "RAILS_CACHE_STORE",
+          "value": "memcache"
+        },
+        {
+          "key": "OPENPROJECT_CACHE__MEMCACHE__SERVER",
+          "value": "openproject-cache:11211"
+        },
+        {
+          "key": "DATABASE_URL",
+          "value": "postgres://postgres:p4ssw0rd@openproject-db/openproject?pool=20&encoding=unicode&reconnect=true"
+        },
+        {
+          "key": "RAILS_MIN_THREADS",
+          "value": "4"
+        },
+        {
+          "key": "RAILS_MAX_THREADS",
+          "value": "16"
+        },
+        {
+          "key": "IMAP_ENABLED",
+          "value": "false"
+        }
       ],
       "volumes": [
         {
@@ -128,27 +203,58 @@
         }
       ],
       "command": "./docker/prod/cron",
-      "dependsOn": [
-        "openproject-db",
-        "openproject-cache",
-        "openproject-seeder"
-      ]
+      "dependsOn": {
+        "openproject-db": {
+          "condition": "service_started"
+        },
+        "openproject-cache": {
+          "condition": "service_started"
+        },
+        "openproject-seeder": {
+          "condition": "service_started"
+        }
+      }
     },
     {
       "name": "openproject-seeder",
       "image": "openproject/openproject:16-slim",
-      "restart": "on-failure",
       "environment": [
-        { "key": "OPENPROJECT_HTTPS", "value": "false" },
-        { "key": "OPENPROJECT_HOST__NAME", "value": "${APP_DOMAIN}" },
-        { "key": "OPENPROJECT_HSTS", "value": "false" },
-        { "key": "RAILS_CACHE_STORE", "value": "memcache" },
-        { "key": "OPENPROJECT_CACHE__MEMCACHE__SERVER", "value": "openproject-cache:11211" },
-        { "key": "OPENPROJECT_RAILS__RELATIVE__URL__ROOT", "value": "" },
-        { "key": "DATABASE_URL", "value": "postgres://postgres:p4ssw0rd@openproject-db/openproject?pool=20&encoding=unicode&reconnect=true" },
-        { "key": "RAILS_MIN_THREADS", "value": "4" },
-        { "key": "RAILS_MAX_THREADS", "value": "16" },
-        { "key": "IMAP_ENABLED", "value": "false"}
+        {
+          "key": "OPENPROJECT_HTTPS",
+          "value": "false"
+        },
+        {
+          "key": "OPENPROJECT_HOST__NAME",
+          "value": "${APP_DOMAIN}"
+        },
+        {
+          "key": "OPENPROJECT_HSTS",
+          "value": "false"
+        },
+        {
+          "key": "RAILS_CACHE_STORE",
+          "value": "memcache"
+        },
+        {
+          "key": "OPENPROJECT_CACHE__MEMCACHE__SERVER",
+          "value": "openproject-cache:11211"
+        },
+        {
+          "key": "DATABASE_URL",
+          "value": "postgres://postgres:p4ssw0rd@openproject-db/openproject?pool=20&encoding=unicode&reconnect=true"
+        },
+        {
+          "key": "RAILS_MIN_THREADS",
+          "value": "4"
+        },
+        {
+          "key": "RAILS_MAX_THREADS",
+          "value": "16"
+        },
+        {
+          "key": "IMAP_ENABLED",
+          "value": "false"
+        }
       ],
       "volumes": [
         {
@@ -157,10 +263,14 @@
         }
       ],
       "command": "./docker/prod/seeder",
-      "dependsOn": [
-        "openproject-db",
-        "openproject-cache"
-      ]
+      "dependsOn": {
+        "openproject-db": {
+          "condition": "service_started"
+        },
+        "openproject-cache": {
+          "condition": "service_started"
+        }
+      }
     }
   ]
 }
