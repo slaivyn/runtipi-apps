@@ -5,6 +5,7 @@
     {
       "name": "openproject-permissions",
       "image": "busybox:latest",
+      "restart": "no",
       "user": "0:0",
       "command": "sh -c 'chown -R 1000:1000 /var/openproject/assets && chmod -R 755 /var/openproject/assets'",
       "volumes": [
