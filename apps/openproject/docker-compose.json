@@ -94,7 +94,17 @@
         }
       ],
       "command": "./docker/prod/web",
-      "dependsOn": ["openproject-db", "openproject-cache", "openproject-seeder"],
+      "dependsOn": {
+        "openproject-db": {
+          "condition": "service_healthy"
+        },
+        "openproject-cache": {
+          "condition": "service_healthy"
+        },
+        "openproject-seeder": {
+          "condition": "service_completed_successfully"
+        }
+      },
       "healthCheck": {
         "test": "curl -f http://localhost:8080/health_checks/default",
         "interval": "10s",
@@ -151,7 +161,17 @@
         }
       ],
       "command": "./docker/prod/worker",
-      "dependsOn": ["openproject-db", "openproject-cache", "openproject-seeder"]
+      "dependsOn": {
+        "openproject-db": {
+          "condition": "service_healthy"
+        },
+        "openproject-cache": {
+          "condition": "service_healthy"
+        },
+        "openproject-seeder": {
+          "condition": "service_completed_successfully"
+        }
+      }
     },
     {
       "name": "openproject-cron",
@@ -201,12 +221,30 @@
         }
       ],
       "command": "./docker/prod/cron",
-      "dependsOn": ["openproject-db", "openproject-cache", "openproject-seeder"]
+      "dependsOn": {
+        "openproject-db": {
+          "condition": "service_healthy"
+        },
+        "openproject-cache": {
+          "condition": "service_healthy"
+        },
+        "openproject-seeder": {
+          "condition": "service_completed_successfully"
+        }
+      }
     },
     {
       "name": "openproject-seeder",
       "image": "openproject/openproject:16-slim",
       "restart": "on-failure",
+      "dependsOn": {
+        "openproject-db": {
+          "condition": "service_healthy"
+        },
+        "openproject-cache": {
+          "condition": "service_healthy"
+        }
+      },
       "environment": [
         {
           "key": "OPENPROJECT_HTTPS",
