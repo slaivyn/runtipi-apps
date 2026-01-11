@@ -11,7 +11,7 @@
   "id": "openproject",
   "description": "Open source project management software. Powerful classic, agile or hybrid project management in a secure environment.",
   "tipi_version": 3,
-  "version": "16.6.7",
+  "version": "16.6.8",
   "categories": ["utilities"],
   "short_desc": "Open source project management software with agile support.",
   "author": "OpenProject Community",
@@ -68,6 +68,29 @@
       "default": true,
       "required": false,
       "env_variable": "OPENPROJECT_SMTP_ENABLE_STARTTLS_AUTO"
+    },
+    {
+      "type": "text",
+      "label": "SMTP Authentication",
+      "hint": "Authentication method: plain, login, or cram_md5 (default: plain)",
+      "default": "plain",
+      "required": false,
+      "env_variable": "OPENPROJECT_SMTP_AUTHENTICATION"
+    },
+    {
+      "type": "text",
+      "label": "SMTP Domain",
+      "hint": "HELO domain for SMTP (usually your domain name)",
+      "required": false,
+      "env_variable": "OPENPROJECT_SMTP_DOMAIN"
+    },
+    {
+      "type": "text",
+      "label": "SSL Verification Mode",
+      "hint": "SSL certificate verification: peer (verify) or none (skip verification)",
+      "default": "peer",
+      "required": false,
+      "env_variable": "OPENPROJECT_SMTP_OPENSSL_VERIFY_MODE"
     }
   ],
   "supported_architectures": ["arm64", "amd64"],

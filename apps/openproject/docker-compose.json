@@ -111,6 +111,18 @@
           "value": "${OPENPROJECT_SMTP_ENABLE_STARTTLS_AUTO}"
         },
         {
+          "key": "SMTP_AUTHENTICATION",
+          "value": "${OPENPROJECT_SMTP_AUTHENTICATION}"
+        },
+        {
+          "key": "SMTP_DOMAIN",
+          "value": "${OPENPROJECT_SMTP_DOMAIN}"
+        },
+        {
+          "key": "SMTP_OPENSSL_VERIFY_MODE",
+          "value": "${OPENPROJECT_SMTP_OPENSSL_VERIFY_MODE}"
+        },
+        {
           "key": "MAIL_FROM",
           "value": "${OPENPROJECT_MAIL_FROM}"
         }
@@ -206,6 +218,18 @@
           "value": "${OPENPROJECT_SMTP_ENABLE_STARTTLS_AUTO}"
         },
         {
+          "key": "SMTP_AUTHENTICATION",
+          "value": "${OPENPROJECT_SMTP_AUTHENTICATION}"
+        },
+        {
+          "key": "SMTP_DOMAIN",
+          "value": "${OPENPROJECT_SMTP_DOMAIN}"
+        },
+        {
+          "key": "SMTP_OPENSSL_VERIFY_MODE",
+          "value": "${OPENPROJECT_SMTP_OPENSSL_VERIFY_MODE}"
+        },
+        {
           "key": "MAIL_FROM",
           "value": "${OPENPROJECT_MAIL_FROM}"
         }
@@ -292,6 +316,18 @@
         {
           "key": "SMTP_ENABLE_STARTTLS_AUTO",
           "value": "${OPENPROJECT_SMTP_ENABLE_STARTTLS_AUTO}"
+        },
+        {
+          "key": "SMTP_AUTHENTICATION",
+          "value": "${OPENPROJECT_SMTP_AUTHENTICATION}"
+        },
+        {
+          "key": "SMTP_DOMAIN",
+          "value": "${OPENPROJECT_SMTP_DOMAIN}"
+        },
+        {
+          "key": "SMTP_OPENSSL_VERIFY_MODE",
+          "value": "${OPENPROJECT_SMTP_OPENSSL_VERIFY_MODE}"
         },
         {
           "key": "MAIL_FROM",
@@ -389,6 +425,18 @@
         {
           "key": "SMTP_ENABLE_STARTTLS_AUTO",
           "value": "${OPENPROJECT_SMTP_ENABLE_STARTTLS_AUTO}"
+        },
+        {
+          "key": "SMTP_AUTHENTICATION",
+          "value": "${OPENPROJECT_SMTP_AUTHENTICATION}"
+        },
+        {
+          "key": "SMTP_DOMAIN",
+          "value": "${OPENPROJECT_SMTP_DOMAIN}"
+        },
+        {
+          "key": "SMTP_OPENSSL_VERIFY_MODE",
+          "value": "${OPENPROJECT_SMTP_OPENSSL_VERIFY_MODE}"
         },
         {
           "key": "MAIL_FROM",
