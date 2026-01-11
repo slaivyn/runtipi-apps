@@ -85,6 +85,34 @@
         {
           "key": "IMAP_ENABLED",
           "value": "false"
+        },
+        {
+          "key": "EMAIL_DELIVERY_METHOD",
+          "value": "smtp"
+        },
+        {
+          "key": "SMTP_ADDRESS",
+          "value": "${OPENPROJECT_SMTP_ADDRESS}"
+        },
+        {
+          "key": "SMTP_PORT",
+          "value": "${OPENPROJECT_SMTP_PORT}"
+        },
+        {
+          "key": "SMTP_USER_NAME",
+          "value": "${OPENPROJECT_SMTP_USERNAME}"
+        },
+        {
+          "key": "SMTP_PASSWORD",
+          "value": "${OPENPROJECT_SMTP_PASSWORD}"
+        },
+        {
+          "key": "SMTP_ENABLE_STARTTLS_AUTO",
+          "value": "${OPENPROJECT_SMTP_ENABLE_STARTTLS_AUTO}"
+        },
+        {
+          "key": "MAIL_FROM",
+          "value": "${OPENPROJECT_MAIL_FROM}"
         }
       ],
       "volumes": [
@@ -152,6 +180,34 @@
         {
           "key": "IMAP_ENABLED",
           "value": "false"
+        },
+        {
+          "key": "EMAIL_DELIVERY_METHOD",
+          "value": "smtp"
+        },
+        {
+          "key": "SMTP_ADDRESS",
+          "value": "${OPENPROJECT_SMTP_ADDRESS}"
+        },
+        {
+          "key": "SMTP_PORT",
+          "value": "${OPENPROJECT_SMTP_PORT}"
+        },
+        {
+          "key": "SMTP_USER_NAME",
+          "value": "${OPENPROJECT_SMTP_USERNAME}"
+        },
+        {
+          "key": "SMTP_PASSWORD",
+          "value": "${OPENPROJECT_SMTP_PASSWORD}"
+        },
+        {
+          "key": "SMTP_ENABLE_STARTTLS_AUTO",
+          "value": "${OPENPROJECT_SMTP_ENABLE_STARTTLS_AUTO}"
+        },
+        {
+          "key": "MAIL_FROM",
+          "value": "${OPENPROJECT_MAIL_FROM}"
         }
       ],
       "volumes": [
@@ -212,6 +268,34 @@
         {
           "key": "IMAP_ENABLED",
           "value": "false"
+        },
+        {
+          "key": "EMAIL_DELIVERY_METHOD",
+          "value": "smtp"
+        },
+        {
+          "key": "SMTP_ADDRESS",
+          "value": "${OPENPROJECT_SMTP_ADDRESS}"
+        },
+        {
+          "key": "SMTP_PORT",
+          "value": "${OPENPROJECT_SMTP_PORT}"
+        },
+        {
+          "key": "SMTP_USER_NAME",
+          "value": "${OPENPROJECT_SMTP_USERNAME}"
+        },
+        {
+          "key": "SMTP_PASSWORD",
+          "value": "${OPENPROJECT_SMTP_PASSWORD}"
+        },
+        {
+          "key": "SMTP_ENABLE_STARTTLS_AUTO",
+          "value": "${OPENPROJECT_SMTP_ENABLE_STARTTLS_AUTO}"
+        },
+        {
+          "key": "MAIL_FROM",
+          "value": "${OPENPROJECT_MAIL_FROM}"
         }
       ],
       "volumes": [
@@ -281,6 +365,34 @@
         {
           "key": "IMAP_ENABLED",
           "value": "false"
+        },
+        {
+          "key": "EMAIL_DELIVERY_METHOD",
+          "value": "smtp"
+        },
+        {
+          "key": "SMTP_ADDRESS",
+          "value": "${OPENPROJECT_SMTP_ADDRESS}"
+        },
+        {
+          "key": "SMTP_PORT",
+          "value": "${OPENPROJECT_SMTP_PORT}"
+        },
+        {
+          "key": "SMTP_USER_NAME",
+          "value": "${OPENPROJECT_SMTP_USERNAME}"
+        },
+        {
+          "key": "SMTP_PASSWORD",
+          "value": "${OPENPROJECT_SMTP_PASSWORD}"
+        },
+        {
+          "key": "SMTP_ENABLE_STARTTLS_AUTO",
+          "value": "${OPENPROJECT_SMTP_ENABLE_STARTTLS_AUTO}"
+        },
+        {
+          "key": "MAIL_FROM",
+          "value": "${OPENPROJECT_MAIL_FROM}"
         }
       ],
       "volumes": [

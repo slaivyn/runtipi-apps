@@ -11,7 +11,7 @@
   "id": "openproject",
   "description": "Open source project management software. Powerful classic, agile or hybrid project management in a secure environment.",
   "tipi_version": 3,
-  "version": "16.6.6",
+  "version": "16.6.7",
   "categories": ["utilities"],
   "short_desc": "Open source project management software with agile support.",
   "author": "OpenProject Community",
@@ -23,6 +23,51 @@
       "label": "Database Password",
       "min": 32,
       "env_variable": "OPENPROJECT_DB_PASSWORD"
+    },
+    {
+      "type": "text",
+      "label": "SMTP Server Address",
+      "hint": "Hostname of your SMTP server (e.g., smtp.gmail.com)",
+      "required": false,
+      "env_variable": "OPENPROJECT_SMTP_ADDRESS"
+    },
+    {
+      "type": "number",
+      "label": "SMTP Port",
+      "hint": "Port number for SMTP (default: 587 for TLS, 465 for SSL)",
+      "default": "587",
+      "required": false,
+      "env_variable": "OPENPROJECT_SMTP_PORT"
+    },
+    {
+      "type": "text",
+      "label": "SMTP Username",
+      "hint": "Username for SMTP authentication",
+      "required": false,
+      "env_variable": "OPENPROJECT_SMTP_USERNAME"
+    },
+    {
+      "type": "password",
+      "label": "SMTP Password",
+      "hint": "Password for SMTP authentication",
+      "required": false,
+      "env_variable": "OPENPROJECT_SMTP_PASSWORD"
+    },
+    {
+      "type": "email",
+      "label": "Email From Address",
+      "hint": "Sender email address for outgoing emails",
+      "default": "openproject@example.net",
+      "required": false,
+      "env_variable": "OPENPROJECT_MAIL_FROM"
+    },
+    {
+      "type": "boolean",
+      "label": "Enable STARTTLS",
+      "hint": "Automatically use STARTTLS encryption if available",
+      "default": true,
+      "required": false,
+      "env_variable": "OPENPROJECT_SMTP_ENABLE_STARTTLS_AUTO"
     }
   ],
   "supported_architectures": ["arm64", "amd64"],
