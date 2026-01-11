@@ -87,43 +87,47 @@
           "value": "false"
         },
         {
-          "key": "EMAIL_DELIVERY_METHOD",
+          "key": "OPENPROJECT_EMAIL__DELIVERY__METHOD",
           "value": "smtp"
         },
         {
-          "key": "SMTP_ADDRESS",
+          "key": "OPENPROJECT_SMTP__ADDRESS",
           "value": "${OPENPROJECT_SMTP_ADDRESS}"
         },
         {
-          "key": "SMTP_PORT",
+          "key": "OPENPROJECT_SMTP__PORT",
           "value": "${OPENPROJECT_SMTP_PORT}"
         },
         {
-          "key": "SMTP_USER_NAME",
+          "key": "OPENPROJECT_SMTP__USER__NAME",
           "value": "${OPENPROJECT_SMTP_USERNAME}"
         },
         {
-          "key": "SMTP_PASSWORD",
+          "key": "OPENPROJECT_SMTP__PASSWORD",
           "value": "${OPENPROJECT_SMTP_PASSWORD}"
         },
         {
-          "key": "SMTP_ENABLE_STARTTLS_AUTO",
+          "key": "OPENPROJECT_SMTP__ENABLE__STARTTLS__AUTO",
           "value": "${OPENPROJECT_SMTP_ENABLE_STARTTLS_AUTO}"
         },
         {
-          "key": "SMTP_AUTHENTICATION",
+          "key": "OPENPROJECT_SMTP__SSL",
+          "value": "${OPENPROJECT_SMTP_SSL}"
+        },
+        {
+          "key": "OPENPROJECT_SMTP__AUTHENTICATION",
           "value": "${OPENPROJECT_SMTP_AUTHENTICATION}"
         },
         {
-          "key": "SMTP_DOMAIN",
+          "key": "OPENPROJECT_SMTP__DOMAIN",
           "value": "${OPENPROJECT_SMTP_DOMAIN}"
         },
         {
-          "key": "SMTP_OPENSSL_VERIFY_MODE",
+          "key": "OPENPROJECT_SMTP__OPENSSL__VERIFY__MODE",
           "value": "${OPENPROJECT_SMTP_OPENSSL_VERIFY_MODE}"
         },
         {
-          "key": "MAIL_FROM",
+          "key": "OPENPROJECT_MAIL__FROM",
           "value": "${OPENPROJECT_MAIL_FROM}"
         }
       ],
@@ -194,43 +198,47 @@
           "value": "false"
         },
         {
-          "key": "EMAIL_DELIVERY_METHOD",
+          "key": "OPENPROJECT_EMAIL__DELIVERY__METHOD",
           "value": "smtp"
         },
         {
-          "key": "SMTP_ADDRESS",
+          "key": "OPENPROJECT_SMTP__ADDRESS",
           "value": "${OPENPROJECT_SMTP_ADDRESS}"
         },
         {
-          "key": "SMTP_PORT",
+          "key": "OPENPROJECT_SMTP__PORT",
           "value": "${OPENPROJECT_SMTP_PORT}"
         },
         {
-          "key": "SMTP_USER_NAME",
+          "key": "OPENPROJECT_SMTP__USER__NAME",
           "value": "${OPENPROJECT_SMTP_USERNAME}"
         },
         {
-          "key": "SMTP_PASSWORD",
+          "key": "OPENPROJECT_SMTP__PASSWORD",
           "value": "${OPENPROJECT_SMTP_PASSWORD}"
         },
         {
-          "key": "SMTP_ENABLE_STARTTLS_AUTO",
+          "key": "OPENPROJECT_SMTP__ENABLE__STARTTLS__AUTO",
           "value": "${OPENPROJECT_SMTP_ENABLE_STARTTLS_AUTO}"
         },
         {
-          "key": "SMTP_AUTHENTICATION",
+          "key": "OPENPROJECT_SMTP__SSL",
+          "value": "${OPENPROJECT_SMTP_SSL}"
+        },
+        {
+          "key": "OPENPROJECT_SMTP__AUTHENTICATION",
           "value": "${OPENPROJECT_SMTP_AUTHENTICATION}"
         },
         {
-          "key": "SMTP_DOMAIN",
+          "key": "OPENPROJECT_SMTP__DOMAIN",
           "value": "${OPENPROJECT_SMTP_DOMAIN}"
         },
         {
-          "key": "SMTP_OPENSSL_VERIFY_MODE",
+          "key": "OPENPROJECT_SMTP__OPENSSL__VERIFY__MODE",
           "value": "${OPENPROJECT_SMTP_OPENSSL_VERIFY_MODE}"
         },
         {
-          "key": "MAIL_FROM",
+          "key": "OPENPROJECT_MAIL__FROM",
           "value": "${OPENPROJECT_MAIL_FROM}"
         }
       ],
@@ -294,43 +302,47 @@
           "value": "false"
         },
         {
-          "key": "EMAIL_DELIVERY_METHOD",
+          "key": "OPENPROJECT_EMAIL__DELIVERY__METHOD",
           "value": "smtp"
         },
         {
-          "key": "SMTP_ADDRESS",
+          "key": "OPENPROJECT_SMTP__ADDRESS",
           "value": "${OPENPROJECT_SMTP_ADDRESS}"
         },
         {
-          "key": "SMTP_PORT",
+          "key": "OPENPROJECT_SMTP__PORT",
           "value": "${OPENPROJECT_SMTP_PORT}"
         },
         {
-          "key": "SMTP_USER_NAME",
+          "key": "OPENPROJECT_SMTP__USER__NAME",
           "value": "${OPENPROJECT_SMTP_USERNAME}"
         },
         {
-          "key": "SMTP_PASSWORD",
+          "key": "OPENPROJECT_SMTP__PASSWORD",
           "value": "${OPENPROJECT_SMTP_PASSWORD}"
         },
         {
-          "key": "SMTP_ENABLE_STARTTLS_AUTO",
+          "key": "OPENPROJECT_SMTP__ENABLE__STARTTLS__AUTO",
           "value": "${OPENPROJECT_SMTP_ENABLE_STARTTLS_AUTO}"
         },
         {
-          "key": "SMTP_AUTHENTICATION",
+          "key": "OPENPROJECT_SMTP__SSL",
+          "value": "${OPENPROJECT_SMTP_SSL}"
+        },
+        {
+          "key": "OPENPROJECT_SMTP__AUTHENTICATION",
           "value": "${OPENPROJECT_SMTP_AUTHENTICATION}"
         },
         {
-          "key": "SMTP_DOMAIN",
+          "key": "OPENPROJECT_SMTP__DOMAIN",
           "value": "${OPENPROJECT_SMTP_DOMAIN}"
         },
         {
-          "key": "SMTP_OPENSSL_VERIFY_MODE",
+          "key": "OPENPROJECT_SMTP__OPENSSL__VERIFY__MODE",
           "value": "${OPENPROJECT_SMTP_OPENSSL_VERIFY_MODE}"
         },
         {
-          "key": "MAIL_FROM",
+          "key": "OPENPROJECT_MAIL__FROM",
           "value": "${OPENPROJECT_MAIL_FROM}"
         }
       ],
@@ -403,43 +415,47 @@
           "value": "false"
         },
         {
-          "key": "EMAIL_DELIVERY_METHOD",
+          "key": "OPENPROJECT_EMAIL__DELIVERY__METHOD",
           "value": "smtp"
         },
         {
-          "key": "SMTP_ADDRESS",
+          "key": "OPENPROJECT_SMTP__ADDRESS",
           "value": "${OPENPROJECT_SMTP_ADDRESS}"
         },
         {
-          "key": "SMTP_PORT",
+          "key": "OPENPROJECT_SMTP__PORT",
           "value": "${OPENPROJECT_SMTP_PORT}"
         },
         {
-          "key": "SMTP_USER_NAME",
+          "key": "OPENPROJECT_SMTP__USER__NAME",
           "value": "${OPENPROJECT_SMTP_USERNAME}"
         },
         {
-          "key": "SMTP_PASSWORD",
+          "key": "OPENPROJECT_SMTP__PASSWORD",
           "value": "${OPENPROJECT_SMTP_PASSWORD}"
         },
         {
-          "key": "SMTP_ENABLE_STARTTLS_AUTO",
+          "key": "OPENPROJECT_SMTP__ENABLE__STARTTLS__AUTO",
           "value": "${OPENPROJECT_SMTP_ENABLE_STARTTLS_AUTO}"
         },
         {
-          "key": "SMTP_AUTHENTICATION",
+          "key": "OPENPROJECT_SMTP__SSL",
+          "value": "${OPENPROJECT_SMTP_SSL}"
+        },
+        {
+          "key": "OPENPROJECT_SMTP__AUTHENTICATION",
           "value": "${OPENPROJECT_SMTP_AUTHENTICATION}"
         },
         {
-          "key": "SMTP_DOMAIN",
+          "key": "OPENPROJECT_SMTP__DOMAIN",
           "value": "${OPENPROJECT_SMTP_DOMAIN}"
         },
         {
-          "key": "SMTP_OPENSSL_VERIFY_MODE",
+          "key": "OPENPROJECT_SMTP__OPENSSL__VERIFY__MODE",
           "value": "${OPENPROJECT_SMTP_OPENSSL_VERIFY_MODE}"
         },
         {
-          "key": "MAIL_FROM",
+          "key": "OPENPROJECT_MAIL__FROM",
           "value": "${OPENPROJECT_MAIL_FROM}"
         }
       ],

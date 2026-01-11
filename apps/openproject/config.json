@@ -11,7 +11,7 @@
   "id": "openproject",
   "description": "Open source project management software. Powerful classic, agile or hybrid project management in a secure environment.",
   "tipi_version": 3,
-  "version": "16.6.8",
+  "version": "16.6.9",
   "categories": ["utilities"],
   "short_desc": "Open source project management software with agile support.",
   "author": "OpenProject Community",
@@ -64,10 +64,18 @@
     {
       "type": "boolean",
       "label": "Enable STARTTLS",
-      "hint": "Automatically use STARTTLS encryption if available",
+      "hint": "Use STARTTLS for port 587 (set to false for port 465)",
       "default": true,
       "required": false,
       "env_variable": "OPENPROJECT_SMTP_ENABLE_STARTTLS_AUTO"
+    },
+    {
+      "type": "boolean",
+      "label": "Enable SSL",
+      "hint": "Use SSL/TLS for port 465 (set to false for port 587)",
+      "default": false,
+      "required": false,
+      "env_variable": "OPENPROJECT_SMTP_SSL"
     },
     {
       "type": "text",
