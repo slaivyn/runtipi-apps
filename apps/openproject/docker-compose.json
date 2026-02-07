@@ -465,7 +465,7 @@
           "containerPath": "/var/openproject/assets"
         }
       ],
-      "command": "./docker/prod/seeder"
+      "command": "sh -c './docker/prod/seeder && exec tail -f /dev/null'"
     }
   ]
 }

@@ -10,7 +10,7 @@
   "gid": 1000,
   "id": "openproject",
   "description": "Open source project management software. Powerful classic, agile or hybrid project management in a secure environment.",
-  "tipi_version": 3,
+  "tipi_version": 4,
   "version": "16.6.9",
   "categories": ["utilities"],
   "short_desc": "Open source project management software with agile support.",
