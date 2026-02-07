@@ -46,9 +46,10 @@
     },
     {
       "name": "openproject-web",
-      "image": "openproject/openproject:16-slim",
+      "image": "openproject/openproject:17-slim",
       "isMain": true,
       "internalPort": 8080,
+      "hostname": "${APP_DOMAIN}",
       "environment": [
         {
           "key": "OPENPROJECT_HTTPS",
@@ -129,6 +130,18 @@
         {
           "key": "OPENPROJECT_MAIL__FROM",
           "value": "${OPENPROJECT_MAIL_FROM}"
+        },
+        {
+          "key": "OPENPROJECT_COLLABORATIVE__EDITING__HOCUSPOCUS__URL",
+          "value": "wss://${APP_DOMAIN}/hocuspocus"
+        },
+        {
+          "key": "OPENPROJECT_COLLABORATIVE__EDITING__HOCUSPOCUS__SECRET",
+          "value": "${OPENPROJECT_HOCUSPOCUS_SECRET}"
+        },
+        {
+          "key": "SECRET_KEY_BASE",
+          "value": "${OPENPROJECT_SECRET_KEY_BASE}"
         }
       ],
       "volumes": [
@@ -159,7 +172,7 @@
     },
     {
       "name": "openproject-worker",
-      "image": "openproject/openproject:16-slim",
+      "image": "openproject/openproject:17-slim",
       "environment": [
         {
           "key": "OPENPROJECT_HTTPS",
@@ -240,6 +253,18 @@
         {
           "key": "OPENPROJECT_MAIL__FROM",
           "value": "${OPENPROJECT_MAIL_FROM}"
+        },
+        {
+          "key": "OPENPROJECT_COLLABORATIVE__EDITING__HOCUSPOCUS__URL",
+          "value": "wss://${APP_DOMAIN}/hocuspocus"
+        },
+        {
+          "key": "OPENPROJECT_COLLABORATIVE__EDITING__HOCUSPOCUS__SECRET",
+          "value": "${OPENPROJECT_HOCUSPOCUS_SECRET}"
+        },
+        {
+          "key": "SECRET_KEY_BASE",
+          "value": "${OPENPROJECT_SECRET_KEY_BASE}"
         }
       ],
       "volumes": [
@@ -263,7 +288,7 @@
     },
     {
       "name": "openproject-cron",
-      "image": "openproject/openproject:16-slim",
+      "image": "openproject/openproject:17-slim",
       "environment": [
         {
           "key": "OPENPROJECT_HTTPS",
@@ -344,6 +369,18 @@
         {
           "key": "OPENPROJECT_MAIL__FROM",
           "value": "${OPENPROJECT_MAIL_FROM}"
+        },
+        {
+          "key": "OPENPROJECT_COLLABORATIVE__EDITING__HOCUSPOCUS__URL",
+          "value": "wss://${APP_DOMAIN}/hocuspocus"
+        },
+        {
+          "key": "OPENPROJECT_COLLABORATIVE__EDITING__HOCUSPOCUS__SECRET",
+          "value": "${OPENPROJECT_HOCUSPOCUS_SECRET}"
+        },
+        {
+          "key": "SECRET_KEY_BASE",
+          "value": "${OPENPROJECT_SECRET_KEY_BASE}"
         }
       ],
       "volumes": [
@@ -367,7 +404,7 @@
     },
     {
       "name": "openproject-seeder",
-      "image": "openproject/openproject:16-slim",
+      "image": "openproject/openproject:17-slim",
       "restart": "on-failure",
       "dependsOn": {
         "openproject-db": {
@@ -457,6 +494,18 @@
         {
           "key": "OPENPROJECT_MAIL__FROM",
           "value": "${OPENPROJECT_MAIL_FROM}"
+        },
+        {
+          "key": "OPENPROJECT_COLLABORATIVE__EDITING__HOCUSPOCUS__URL",
+          "value": "wss://${APP_DOMAIN}/hocuspocus"
+        },
+        {
+          "key": "OPENPROJECT_COLLABORATIVE__EDITING__HOCUSPOCUS__SECRET",
+          "value": "${OPENPROJECT_HOCUSPOCUS_SECRET}"
+        },
+        {
+          "key": "SECRET_KEY_BASE",
+          "value": "${OPENPROJECT_SECRET_KEY_BASE}"
         }
       ],
       "volumes": [
@@ -466,6 +515,16 @@
         }
       ],
       "command": "sh -c './docker/prod/seeder && exec tail -f /dev/null'"
+    },
+    {
+      "name": "openproject-hocuspocus",
+      "image": "openproject/hocuspocus:17.0.3",
+      "environment": [
+        {
+          "key": "SECRET",
+          "value": "${OPENPROJECT_HOCUSPOCUS_SECRET}"
+        }
+      ]
     }
   ]
 }
